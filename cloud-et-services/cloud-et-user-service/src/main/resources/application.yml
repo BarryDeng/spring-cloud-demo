@@ -1,0 +1,27 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /user_sys
+
+spring:
+  application:
+    name: user-service
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc://mysql:///et2021?serverTimezone=UTC
+    username: root
+    password: 123456
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.cloud-et.bean
+
+logging:
+  level:
+    com.etoak.mapper: debug
