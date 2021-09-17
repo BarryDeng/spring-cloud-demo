@@ -17,8 +17,19 @@ public class CloudEtFeignClientApplication {
         return userService.getUser(id);
     }
 
+    @GetMapping("/postkv")
+    public Result<User> postkv(User user) {
+        return userService.addUser(user.getName(),
+                user.getEmail(),
+                user.getAge());
+    }
+
+    @GetMapping("postjson")
+    public Result<User> postjson(User user) {
+        return userService.addUser2(user);
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(CloudEtFeignClientApplication.class, args);
     }
-
 }
