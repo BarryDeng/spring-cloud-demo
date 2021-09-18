@@ -1,0 +1,13 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /goods_sys
+
+spring:
+  application:
+    name: goods-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka

@@ -6,22 +6,25 @@ server:
 spring:
   application:
     name: user-service
-
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc://mysql:///et2021?serverTimezone=UTC
-    username: root
-    password: 123456
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:7001/eureka
 
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.example.cloud-et.bean
-
 logging:
   level:
     com.etoak.mapper: debug
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      backendA:
+        registerHealthIndicator: true
+        slidingWindowSize: 100
