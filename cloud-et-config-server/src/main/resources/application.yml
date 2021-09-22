@@ -1,0 +1,19 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: config-server
+
+  profiles:
+    active: native
+
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+
+    config:
+      server:
+        git:
+          uri: file://${user.home}/config-repo

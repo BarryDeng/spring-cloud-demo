@@ -3,6 +3,7 @@ package com.example.cloudetfeignclient;
 import com.example.cloudetbean.Result;
 import com.example.cloudetbean.User;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.cloud.sleuth.annotation.NewSpan;
 import org.springframework.web.bind.annotation.*;
 
 @FeignClient("user-service")
