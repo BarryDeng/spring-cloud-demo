@@ -1,6 +1,7 @@
 package com.example.cloudetuserservice;
 
 import com.example.cloudetbean.User;
+import org.apache.tomcat.jni.Time;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.sleuth.annotation.NewSpan;
@@ -17,10 +18,15 @@ public class UserService {
     @Value("${name}")
     private String name;
 
-    @NewSpan
+    @GetMapping("/")
+    public String index() {
+        return "Hello World";
+    }
+
     @GetMapping("/getUser")
-    public Result getUser(int id) {
-        Result<User> result = new Result<User>();
+    public Result getUser(int id) throws InterruptedException {
+        Thread.sleep(5000);
+        Result<User> result = new Result<>();
         result.setCode(1);
         result.setMsg("abcdefg");
         User user = new User();
