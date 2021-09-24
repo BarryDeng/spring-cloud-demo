@@ -11,12 +11,8 @@ spring:
     gateway:
       routes:
         - id: ARoutes
-          uri: http://localhost:8082
+          uri: lb://order-service # 负载均衡
           predicates:     #断言（匹配条件）
-            - Path=/ta/**    #用户访问http://localhost:8900/ta/method1时，用户实际访问路径为localhost:8082/ta/method1
+            - Path=/order_sys/**    #用户访问http://localhost:8900/ta/method1时，用户实际访问路径为localhost:8082/ta/method1
       default-filters:    #路由的默认过滤器
-        - StripPrefix=1    #去掉前置路径数，此时的实际访问路径为http://localhost:8900/method1
-        - name: CircuitBreaker
-          args:
-            name: backendA
-            fallbackUri: forward:/fallback
+        - StripPrefix=0    #去掉前置路径数，此时的实际访问路径为http://localhost:8900/method1
